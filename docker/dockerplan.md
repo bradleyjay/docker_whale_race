@@ -13,7 +13,6 @@ Second pass - include env variable at startup:
 * `docker run -e WORD=babyyoda -d -it --name=helloworld10 -p 89:8089 2f6ef4a20cf6`
 
 
-
 <!-- ### Method 1
 
 # get the time target
