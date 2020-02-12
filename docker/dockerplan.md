@@ -3,10 +3,14 @@
 python script? runs bash commands?
 or, bash shell script that interpolates and builds the run commands
 
-Things we need to do:
+First pass, create image and run docker container:
 * Create dockerfile
-* Build that file into an image
-* Launch that image with a run command that includes env variables
+* Build that file into an image (note image hash output here): `docker build .`
+* Launch that image with a run command (edit to include image's hash here): `docker run -d -it --name=helloworld0 -p 89:8089 2f6ef4a20cf6`
+* hop into the container to check: `docker exec -it helloworld0 /bin/bash`
+
+Second pass - include env variable at startup:
+* `docker run -e WORD=babyyoda -d -it --name=helloworld10 -p 89:8089 2f6ef4a20cf6`
 
 
 
