@@ -1,0 +1,37 @@
+version: '3'
+services:
+  whale_1:
+    image: ubuntu
+    command: tail -F dummyfile.txt
+    environment:
+      - testy_1=failing
+  whale_2:
+    image: ubuntu
+    command: tail -F dummyfile.txt
+    environment:
+      - testy_2=enthused
+  whale_3:
+    image: ubuntu
+    command: tail -F dummyfile.txt
+    environment:
+      - testy_3=baby_yoda
+  whale_4:
+    image: ubuntu
+    command: tail -F dummyfile.txt
+    environment:
+      - testy_4=coronavirus
+
+# build images
+# docker-compose up -d
+
+# KILL EVERYTHING
+# docker container kill $(docker ps -q)
+
+# remove:
+# docker container rm $(docker ps -a -q)
+
+# exec into container:
+# docker exec -it <container ID> bash
+
+# access value(see if env variable is available):
+# echo $<name of variable>
