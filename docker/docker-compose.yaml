@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   whale_1:
     image: ubuntu
@@ -17,10 +17,14 @@ services:
       - testy_3=baby_yoda
   whale_4:
     image: ubuntu
-    command: bash -c "date +%s > timenow.dat && tail -F dummyfile.txt"
+    command: bash -c "tail -F dummyfile.txt"
     environment:
       - testy_4=coronavirus
-
+  whale_5:
+    image: 2f6ef4a20cf6
+    command: bash -c "tail -F dummyfile.txt"
+    environment:
+      - testy_5=NOOOPE
 # build images
 # docker-compose up -d
 
