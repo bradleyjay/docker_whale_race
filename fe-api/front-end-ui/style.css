@@ -1,0 +1,36 @@
+#parent{
+    margin: auto;
+    width: 80%;
+    height: 400px;
+    border: 3px solid green;
+    padding: 20px;
+}
+
+#whale-graph{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    height: 100%;
+    border: 3px solid red; 
+}
+
+ul{
+    display: flex;
+    /* border: 2px solid blue; */
+    align-items: flex-end;
+
+}
+
+.whale-icon {
+    width: 75px;
+}
+
+#whale-3 {
+    
+}
+
+input {
+    outline: none;
+    border: 2px solid blue;
+}
