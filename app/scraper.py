@@ -14,11 +14,13 @@ def scrape():
     #     headers={"User-agent": "your bot 0.1"},
     # ).json()
     resp = requests.get(
-        "https://reddit.com/r/popular/hot.json?limit=100",
+        "https://reddit.com/r/popular/hot.json?limit=10",
         headers={"User-agent": "your bot 0.1"},
     ).json()
-
+    i = 0
     for post in resp["data"]["children"]:
+        i += 1
+        print(i)
         parse_string += post["data"]["title"] + " " + post["data"]["selftext"]
 
         ## Limit = maximum number of comments to return,
@@ -43,8 +45,8 @@ def scrape():
         parse_string += depth_first_search(comment_resp)
         global comment_string
         comment_string = ""  # this is grimy
-        print(parse_string)
-        sys.exit()  # DEBUG ONLY
+        # print(parse_string)
+        # sys.exit()  # DEBUG ONLY
     return parse_string
 
 
