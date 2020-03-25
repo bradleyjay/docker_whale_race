@@ -20,7 +20,7 @@ iterations = 0
 
 while is_active:
     iterations += 1
-    new_instances_found = parse(input_word)
+    new_instances_found = parse(input_word, iterations)
     results["new_instances_found"] = new_instances_found
     results["cum_instances_found"] += new_instances_found
     # send results to API

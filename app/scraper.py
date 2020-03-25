@@ -6,15 +6,38 @@ import sys
 # clean up global comment string - can we just place it here, call it global in
 # function
 
+sub_reddit_list = [
+    "popular",
+    "politics",
+    "Trending",
+    "aww",
+    "worldnews",
+    "worldpolitics",
+    "funny",
+    "dadjokes",
+    "AskReddit",
+    "television",
+    "technology",
+    "todayilearned",
+    "movies",
+    "Science",
+    "music",
+    "Showerthoughts",
+    "gaming",
+    "tifu",
+    "AmItheAsshole",
+    "NoStupidQuestions"
+]
 
-def scrape():
+
+def scrape(iterations):
     parse_string = ""
     # resp = requests.get(
     #     "https://reddit.com/r/popular/new.json?limit=100",
     #     headers={"User-agent": "your bot 0.1"},
     # ).json()
     resp = requests.get(
-        "https://reddit.com/r/popular/hot.json?limit=10",
+        "https://reddit.com/r/" + sub_reddit_list[iterations] + "/hot.json?limit=15",
         headers={"User-agent": "your bot 0.1"},
     ).json()
     i = 0
