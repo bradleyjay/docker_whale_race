@@ -6,7 +6,9 @@ import math
 race_start_timestamp = datetime.now()
 
 # get input_word from api.py file that interacts with API
-input_word = "dog"
+input_word_original = "the"
+
+input_word = input_word_original.lower()
 
 race_duration_seconds = 60
 
@@ -24,6 +26,6 @@ while is_active:
     results["new_instances_found"] = new_instances_found
     results["cum_instances_found"] += new_instances_found
     # send results to API
-    print("iterations: " + str(iterations))
+    # print("iterations: " + str(iterations))
     print(results)
     is_active = datetime.now() < race_end_timestamp

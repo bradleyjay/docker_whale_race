@@ -41,10 +41,10 @@ def scrape(iterations):
         headers={"User-agent": "your bot 0.1"},
     ).json()
     i = 0
+    print(sub_reddit_list[iterations])
     for post in resp["data"]["children"]:
         i += 1
-        print(i)
-        parse_string += post["data"]["title"] + " " + post["data"]["selftext"]
+        parse_string += " " + post["data"]["title"] + " " + post["data"]["selftext"] + " "
 
         ## Limit = maximum number of comments to return,
         ## Depth = maximum depth of subtrees in thread
@@ -66,8 +66,9 @@ def scrape(iterations):
 
         # recursively loop through comments and append them to parse_string
         parse_string += depth_first_search(comment_resp)
+
         global comment_string
-        comment_string = ""  # this is grimy
+        comment_string = " "
         # print(parse_string)
         # sys.exit()  # DEBUG ONLY
     return parse_string
@@ -80,7 +81,8 @@ def depth_first_search(root):
     # print(len(root))
 
     global comment_string
-    comment_string = ""  # this is grimy
+    # setting this to blank space since we search for the search term with spaces around it
+    comment_string = " "  # this is grimy
     # start at root
     if root is not None:
         _depth_first_search(root)
@@ -107,6 +109,9 @@ def _depth_first_search(root):
 
                 if "replies" in child["data"]:
                     _depth_first_search(child["data"]["replies"])
+
+        # adding blank space since we search for the search term with spaces around it
+        comment_string += " "
 
         # no children/done? evaluate self
 
