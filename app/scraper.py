@@ -2,6 +2,7 @@ import requests
 import json
 import time
 import sys
+import random
 
 # clean up global comment string - can we just place it here, call it global in
 # function
@@ -30,18 +31,20 @@ sub_reddit_list = [
 ]
 
 
-def scrape(iterations):
+def scrape():
     parse_string = ""
-    # resp = requests.get(
-    #     "https://reddit.com/r/popular/new.json?limit=100",
-    #     headers={"User-agent": "your bot 0.1"},
-    # ).json()
+
+    random_number = random.randint(0, len(sub_reddit_list) - 1)
+
+    subreddit = sub_reddit_list.pop(random_number)
+
     resp = requests.get(
-        "https://reddit.com/r/" + sub_reddit_list[iterations] + "/hot.json?limit=15",
+        "https://reddit.com/r/" + subreddit + "/hot.json?limit=20",
         headers={"User-agent": "your bot 0.1"},
     ).json()
+
     i = 0
-    print(sub_reddit_list[iterations])
+    print(subreddit)
     for post in resp["data"]["children"]:
         i += 1
         parse_string += " " + post["data"]["title"] + " " + post["data"]["selftext"] + " "
@@ -52,7 +55,7 @@ def scrape(iterations):
         comment_resp = requests.get(
             "https://www.reddit.com/r/popular/comments/"
             + post["data"]["id"]
-            + ".json?limit=100?depth=100",
+            + ".json?limit=50?depth=50",
             headers={"User-agent": "your bot 0.1"},
         ).json()
 

@@ -1,10 +1,10 @@
 from scraper import scrape;
 import inflect;
 
-def parse(input_word, iterations):
+def parse(input_word):
     plural_engine = inflect.engine()
 
-    parse_string = scrape(iterations).lower();
+    parse_string = scrape().lower();
 
     singular_count = parse_string.count(" " + input_word + " ")
 
