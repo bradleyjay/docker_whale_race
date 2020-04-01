@@ -39,7 +39,7 @@ def scrape():
     subreddit = sub_reddit_list.pop(random_number)
 
     resp = requests.get(
-        "https://reddit.com/r/" + subreddit + "/hot.json?limit=20",
+        "https://reddit.com/r/" + subreddit + "/hot.json?limit=5",
         headers={"User-agent": "your bot 0.1"},
     ).json()
 
@@ -55,7 +55,7 @@ def scrape():
         comment_resp = requests.get(
             "https://www.reddit.com/r/popular/comments/"
             + post["data"]["id"]
-            + ".json?limit=50?depth=50",
+            + ".json?limit=100?depth=100",
             headers={"User-agent": "your bot 0.1"},
         ).json()
 
