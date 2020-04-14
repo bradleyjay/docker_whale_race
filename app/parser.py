@@ -1,7 +1,15 @@
 from scraper import scrape;
+import inflect;
 
-def parser(input_word):
-    parse_string = scrape();
-    return parse_string.count(input_word);
+def parse(input_word):
+    plural_engine = inflect.engine()
 
-print(parser("Bernie"))
+    parse_string = scrape().lower();
+
+    singular_count = parse_string.count(" " + input_word + " ")
+
+    plural_word = plural_engine.plural(input_word)
+    plural_count = parse_string.count(" " + plural_word + " ")
+
+    total_count = singular_count + plural_count
+    return total_count;

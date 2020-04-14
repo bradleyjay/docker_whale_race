@@ -1,0 +1,6 @@
+FROM ubuntu:latest
+WORKDIR '/app'
+RUN apt-get update
+RUN date +"%T" > /timenow.dat
+COPY . .
+CMD ["bash"]
