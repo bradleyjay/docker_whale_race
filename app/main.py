@@ -1,16 +1,17 @@
 from datetime import datetime, timedelta
 from parser import parse
+
 import math
+import os
 
 # get starting timestamp from api.py file that interacts with API
-race_start_timestamp = datetime.now()
+race_start_timestamp = os.getenv('RACE_START')
 
-# get input_word from api.py file that interacts with API
-input_word_original = "dog"
+input_word_original = os.getenv('WORD')
 
 input_word = input_word_original.lower()
 
-race_duration_seconds = 60
+race_duration_seconds = os.getenv('RACE_DURATION')
 
 race_end_timestamp = race_start_timestamp + timedelta(seconds=race_duration_seconds)
 
