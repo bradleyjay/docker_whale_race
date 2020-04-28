@@ -1,19 +1,21 @@
 from datetime import datetime, timedelta
 from parser import parse
 
+import time
 import math
 import os
 
 # get starting timestamp from api.py file that interacts with API
-race_start_timestamp = os.getenv('RACE_START')
+race_start_timestamp = int(os.getenv('RACE_START'))
+race_start_timestamp = time.time()
 
 input_word_original = os.getenv('WORD')
 
 input_word = input_word_original.lower()
 
-race_duration_seconds = os.getenv('RACE_DURATION')
+race_duration_seconds = int(os.getenv('RACE_DURATION'))
 
-race_end_timestamp = race_start_timestamp + timedelta(seconds=race_duration_seconds)
+race_end_timestamp = race_start_timestamp + race_duration_seconds
 
 is_active = True
 
@@ -26,4 +28,4 @@ while is_active:
     # send results to API
     # print("iterations: " + str(iterations))
     print(results)
-    is_active = datetime.now() < race_end_timestamp
+    is_active = time.time() < race_end_timestamp
