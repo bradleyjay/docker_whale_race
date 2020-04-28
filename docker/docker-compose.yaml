@@ -4,27 +4,37 @@ services:
     image: ubuntu
     command: bash -c "date +%s > timenow.dat && tail -F dummyfile.txt"
     environment:
-      - testy_1=failing
+      - WORD=failing
+      - RACE_START=20
+      - RACE_DURATION=60
   whale_2:
     image: ubuntu
     command: bash -c "date +%s > timenow.dat && tail -F dummyfile.txt"
     environment:
-      - testy_2=enthused
+      - WORD=enthused
+      - RACE_START=20
+      - RACE_DURATION=60
   whale_3:
     image: ubuntu
     command: bash -c "date +%s > timenow.dat && tail -F dummyfile.txt"
     environment:
-      - testy_3=baby_yoda
+      - WORD=babyyoda
+      - RACE_START=20
+      - RACE_DURATION=60
   whale_4:
     image: ubuntu
     command: bash -c "tail -F dummyfile.txt"
     environment:
-      - testy_4=coronavirus
+      - WORD=failing
+      - RACE_START=20
+      - RACE_DURATION=60
   whale_5:
     image: 2f6ef4a20cf6
     command: bash -c "tail -F dummyfile.txt"
     environment:
-      - testy_5=NOOOPE
+      - WORD=failing
+      - RACE_START=20
+      - RACE_DURATION=60
 # build images
 # docker-compose up -d
 
