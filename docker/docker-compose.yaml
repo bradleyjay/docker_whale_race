@@ -40,6 +40,8 @@ services:
 
 #_______
 
+# docker ps (check container name)
+#
 # exec into container:
 # docker exec -it <container ID> bash
 
