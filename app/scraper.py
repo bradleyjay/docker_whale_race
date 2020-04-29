@@ -32,6 +32,7 @@ sub_reddit_list = [
 
 
 def scrape():
+
     parse_string = ""
 
     random_number = random.randint(0, len(sub_reddit_list) - 1)
@@ -74,7 +75,8 @@ def scrape():
         comment_string = " "
         # print(parse_string)
         # sys.exit()  # DEBUG ONLY
-    return parse_string
+    remaining_subs = len(sub_reddit_list);
+    return {'string': parse_string, 'remaining_subs': remaining_subs}
 
 
 def depth_first_search(root):
