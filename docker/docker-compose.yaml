@@ -29,13 +29,14 @@ services:
       - RACE_START=20
       - RACE_DURATION=60
   whale_5:
-    image: 2f6ef4a20cf6
+    image: d6f9a05fa0fb
     command: bash -c "tail -F dummyfile.txt"
     environment:
       - WORD=failing
       - RACE_START=20
       - RACE_DURATION=60
-# build images
+# build image:
+# docker build .
 # docker-compose up -d
 
 #_______

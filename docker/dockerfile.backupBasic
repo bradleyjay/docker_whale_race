@@ -1,0 +1,8 @@
+FROM ubuntu:latest
+
+RUN apt-get update
+
+CMD ["bash"]
+
+# 4-28-2020
+#  this is the working, basic dockerfile. spins up, waits on the bash prompt.
