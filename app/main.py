@@ -7,7 +7,6 @@ import os
 
 # get starting timestamp from api.py file that interacts with API
 race_start_timestamp = int(os.getenv('RACE_START'))
-race_start_timestamp = time.time()
 
 input_word_original = os.getenv('WORD')
 
