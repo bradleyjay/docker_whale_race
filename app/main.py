@@ -31,3 +31,6 @@ while is_active:
     is_active = time.time() < race_end_timestamp
     if parse_results["remaining_subs"] == 0:
         is_active = False
+
+
+        # test
