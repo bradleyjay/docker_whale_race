@@ -1,5 +1,6 @@
 import yaml
 import copy
+import subprocess
 
 """
 For next time: 
@@ -12,63 +13,63 @@ For next time:
 """
 
 
-# unpack the list of words from frontend's array; dummy vars
+def yaml_writer(race_data):
+
+    # unpack the list of words from frontend's array; dummy vars
+    # race_data = [array_of_words, start_time, duration]
+
+    start_time = "RACE_START=" + str(race_data[1])
+    duration = "RACE_DURATION=" + str(race_data[2])
+    array_of_words = race_data[0]
+
+    ################
+
+    stream = open("docker-compose-blank.yaml", "r")
+
+    # load it
+    compose_yaml_array = yaml.load(stream)
+    print(compose_yaml_array["services"]["whale_0"])
+
+    # create template for copying
+    template = copy.deepcopy(compose_yaml_array["services"]["whale_0"])
+
+    for i in range(0, len(array_of_words)):
+
+        # unpack the right word, get into ENVVAR= format:
+        word_to_be = "WORD=" + array_of_words[i]
+
+        # copy it (bop it)
+        temp_copy = copy.deepcopy(template)
+
+        # place it in the array
+        whalename = str("whale_" + str(i))
+        compose_yaml_array["services"][whalename] = temp_copy
+        # print(compose_yaml_array["services"])
+
+        # modify it from the list we got up front
+        compose_yaml_array["services"][whalename]["environment"] = [
+            word_to_be,
+            start_time,
+            duration,
+        ]
+
+    # -----
+
+    # finally, write it
+    print("Output Array: \n" + str(compose_yaml_array["services"]))
+
+    f = open("docker-compose.yaml", "w+")
+    f.write(yaml.dump(compose_yaml_array))
+
+
+# debug:
 # race_data = [array_of_words, start_time, duration]
-array_of_words = ["beer", "gin", "pineapple"]
-start_time = 10
-duration = 60
+fake_race_data = [["beer", "gin", "pineapple"], 10, 60]
+# fake_race_data = [["beer", "gin"], 10, 60]
 
-start_time_to_be = "RACE_START=" + str(start_time)
-duration_to_be = "RACE_DURATION=" + str(duration)
-
-race_data = [array_of_words, start_time, duration]
-
-
-################
-
-stream = open("docker-compose-blank.yaml", "r")
-
-
-# load it
-compose = yaml.load(stream)
-print(compose["services"]["whale_1"])
-template = copy.deepcopy(compose["services"]["whale_1"])
-# print(template)
-# exit
-
-## FOR LOOP HERE
-
-# modify it
-print("ENV HERE")
-print(compose["services"]["whale_1"]["environment"])
-
-# format:
-# ['WORD=fake_word', 'RACE_START=fake_start', 'RACE_DURATION=fake_duration']
-word_to_be = "WORD=" + array_of_words[0]
-print("WORD HERE")
-print(word_to_be)
-
-compose["services"]["whale_1"]["environment"] = [
-    word_to_be,
-    start_time_to_be,
-    duration_to_be,
-]
-
-# copy it (bop it)
-a = copy.deepcopy(template)
-compose["services"]["whale_2"] = a
-# print(compose["services"])
-
-compose["services"]["whale_2"]["environment"] = [
-    "tomato",
-    start_time_to_be,
-    duration_to_be,
-]
-
-# write it
-print(compose["services"])
-
-
-f = open("docker-compose.yaml", "w+")
-f.write(yaml.dump(compose))
-# print(yaml.dump(compose))
+yaml_writer(fake_race_data)
+subprocess.getstatusoutput("docker container kill $(docker ps -q)")
+subprocess.getstatusoutput("docker-compose up -d")
+output1 = subprocess.getstatusoutput("docker ps")  # better than nothing, ugly
+print("I made some whales.")
+print(output1)

@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  whale_1:
+  whale_0:
     image: d6f9a05fa0fb
     command: bash -c "tail -F dummyfile.txt"
     environment:
