@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  whale_0:
+    image: d6f9a05fa0fb
+    command: bash -c "tail -F dummyfile.txt"
+    environment:
+      - WORD=fake_word
+      - RACE_START=fake_start
+      - RACE_DURATION=fake_duration
+# build image:
+# docker build .
+# docker-compose up -d
+
+#_______
+
+# KILL EVERYTHING
+# docker container kill $(docker ps -q)
+
+#THEN
+
+# remove:
+# docker container rm $(docker ps -a -q)
+
+#_______
+
+# docker ps (check container name)
+#
+# exec into container:
+# docker exec -it <container ID> bash
+
+# access value(see if env variable is available):
+# echo $<name of variable>
+
+#________
+
+#container 2:
+#1583885093
+
+#container 1:
+#1583885092
