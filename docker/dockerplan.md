@@ -16,7 +16,7 @@
 ### Part II: Basic Container Spin up
 First pass, create image and run docker container:
 
-* Create dockerfile
+* Create dockerfile, include application
 * Build that file into an image (note image hash output here): `docker build .`
 * Launch that image with a run command (edit to include image's hash here): `docker run -d -it --name=helloworld0 -p 89:8089 2f6ef4a20cf6`
 * hop into the container to check: `docker exec -it helloworld0 /bin/bash`
