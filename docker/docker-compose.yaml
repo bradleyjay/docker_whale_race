@@ -1,0 +1,16 @@
+services:
+  whale_0:
+    command: bash -c "tail -F dummyfile.txt"
+    environment:
+    - WORD=beer
+    - RACE_START=10
+    - RACE_DURATION=60
+    image: d6f9a05fa0fb
+  whale_1:
+    command: bash -c "tail -F dummyfile.txt"
+    environment:
+    - WORD=gin
+    - RACE_START=10
+    - RACE_DURATION=60
+    image: d6f9a05fa0fb
+version: '3'
