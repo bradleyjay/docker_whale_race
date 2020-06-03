@@ -16,6 +16,9 @@ For next time:
 
 def yaml_writer(race_data):
 
+    subprocess.getstatusoutput("docker container kill $(docker ps -q)")
+    subprocess.getstatusoutput("docker-compose up -d")
+
     # unpack the list of words from frontend's array; dummy vars
     # race_data = [array_of_words, start_time, duration]
 
@@ -73,8 +76,7 @@ fake_race_data = [["dog", "computer", "anything but pineapple"], int(datetime.da
 # fake_race_data = [["beer", "gin"], 10, 60]]
 
 yaml_writer(fake_race_data)
-subprocess.getstatusoutput("docker container kill $(docker ps -q)")
-subprocess.getstatusoutput("docker-compose up -d")
+
 output1 = subprocess.getstatusoutput("docker ps")  # better than nothing, ugly
 print("I made some whales.")
 print(output1)
