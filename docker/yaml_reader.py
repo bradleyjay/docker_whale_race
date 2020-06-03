@@ -70,13 +70,9 @@ def yaml_writer(race_data):
     f.write(yaml.dump(compose_yaml_array))
 
 
-# debug:
-# race_data = [array_of_words, start_time, duration]
-fake_race_data = [["dog", "computer", "anything but pineapple"], int(datetime.datetime.now().timestamp()), 1000]
-# fake_race_data = [["beer", "gin"], 10, 60]]
-
-yaml_writer(fake_race_data)
-
-output1 = subprocess.getstatusoutput("docker ps")  # better than nothing, ugly
-print("I made some whales.")
-print(output1)
+# # debug:
+# # race_data = [array_of_words, start_time, duration]
+# fake_race_data = [["dog", "computer", "anything but pineapple"], int(datetime.datetime.now().timestamp()), 1000]
+# # fake_race_data = [["beer", "gin"], 10, 60]]
+#
+# yaml_writer(fake_race_data)

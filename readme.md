@@ -1,3 +1,12 @@
+## Start the API Flask Server
+1. Give the API Flask script execute permissions:
+`chmod +x docker/run_api.sh`
+2. Open a new terminal tab, and start the API Flask server:
+`./docker/run_api.sh`
+3. Run all the whale race setup steps
+4. Send a POST to the endpoint to test:
+`curl -X POST http://localhost:5000/race_settings`
+
 ## Docker Whale Race
 
 1. Ensure you have Docker and Python installed.
@@ -19,7 +28,7 @@
 `chmod +x startup_script.sh `
 `./startup_script.sh `
 
-6. Generate our up-to-date docker-compose.yaml:
+6. [if not using API] Generate our up-to-date docker-compose.yaml:
 
 `python3 yaml_reader.py`
 

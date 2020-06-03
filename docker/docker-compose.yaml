@@ -3,21 +3,21 @@ services:
     command: bash -c "python3 main.py"
     environment:
     - WORD=dog
-    - RACE_START=1591143234
+    - RACE_START=1591146201
     - RACE_DURATION=1000
-    image: 2e12511c5d40
+    image: 3679bdbfe1a1
   whale_1:
     command: bash -c "python3 main.py"
     environment:
     - WORD=computer
-    - RACE_START=1591143234
+    - RACE_START=1591146201
     - RACE_DURATION=1000
-    image: 2e12511c5d40
+    image: 3679bdbfe1a1
   whale_2:
     command: bash -c "python3 main.py"
     environment:
-    - WORD=anything but pineapple
-    - RACE_START=1591143234
+    - WORD=protest
+    - RACE_START=1591146201
     - RACE_DURATION=1000
-    image: 2e12511c5d40
+    image: 3679bdbfe1a1
 version: '3'
