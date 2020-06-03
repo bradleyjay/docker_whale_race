@@ -1,9 +1,10 @@
 import yaml
 import copy
 import subprocess
+import datetime
 
 """
-For next time: 
+For next time:
 
 - create a for loop, using len(array_of_words)
 - clean up the variable-name-building
@@ -22,6 +23,8 @@ def yaml_writer(race_data):
     duration = "RACE_DURATION=" + str(race_data[2])
     array_of_words = race_data[0]
 
+    docker_image_id = subprocess.getstatusoutput("docker images -q docker_shocker")
+
     ################
 
     stream = open("docker-compose-blank.yaml", "r")
@@ -32,6 +35,8 @@ def yaml_writer(race_data):
 
     # create template for copying
     template = copy.deepcopy(compose_yaml_array["services"]["whale_0"])
+
+    template["image"] = docker_image_id[1]
 
     for i in range(0, len(array_of_words)):
 
@@ -64,8 +69,8 @@ def yaml_writer(race_data):
 
 # debug:
 # race_data = [array_of_words, start_time, duration]
-fake_race_data = [["beer", "gin", "pineapple"], 10, 60]
-# fake_race_data = [["beer", "gin"], 10, 60]
+fake_race_data = [["dog", "computer", "anything but pineapple"], int(datetime.datetime.now().timestamp()), 1000]
+# fake_race_data = [["beer", "gin"], 10, 60]]
 
 yaml_writer(fake_race_data)
 subprocess.getstatusoutput("docker container kill $(docker ps -q)")

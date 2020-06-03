@@ -2,8 +2,8 @@ version: "3"
 
 services:
   whale_0:
-    image: d6f9a05fa0fb
-    command: bash -c "tail -F dummyfile.txt"
+    image: 3679bdbfe1a1
+    command: bash -c "python3 main.py"
     environment:
       - WORD=fake_word
       - RACE_START=fake_start
