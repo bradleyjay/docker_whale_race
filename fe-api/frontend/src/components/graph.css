@@ -1,0 +1,23 @@
+.chart {
+    text-align: center;
+  }
+  
+  .chart-container {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    width: 700px;
+  }
+  
+  .graph {
+    height: 80%;
+    width: 80%;
+  
+    min-height: 40rem;
+    min-width: 10rem;
+  }
