@@ -27,7 +27,7 @@ sub_reddit_list = [
     "gaming",
     "tifu",
     "AmItheAsshole",
-    "NoStupidQuestions"
+    "NoStupidQuestions",
 ]
 
 
@@ -46,37 +46,34 @@ def scrape():
 
     i = 0
     print(subreddit)
-    for post in resp["data"]["children"]:
-        i += 1
-        parse_string += " " + post["data"]["title"] + " " + post["data"]["selftext"] + " "
+    try:
+        for post in resp["data"]["children"]:
+            i += 1
+            parse_string += (
+                " " + post["data"]["title"] + " " + post["data"]["selftext"] + " "
+            )
 
-        ## Limit = maximum number of comments to return,
-        ## Depth = maximum depth of subtrees in thread
+            ## Limit = maximum number of comments to return,
+            ## Depth = maximum depth of subtrees in thread
 
-        comment_resp = requests.get(
-            "https://www.reddit.com/r/popular/comments/"
-            + post["data"]["id"]
-            + ".json?limit=100?depth=100",
-            headers={"User-agent": "your bot 0.1"},
-        ).json()
+            comment_resp = requests.get(
+                "https://www.reddit.com/r/popular/comments/"
+                + post["data"]["id"]
+                + ".json?limit=100?depth=100",
+                headers={"User-agent": "your bot 0.1"},
+            ).json()
 
-        # comment_resp = requests.get(
-        #     "https://www.reddit.com/r/popular/comments/"
-        #     + "fo40gu"
-        #     + ".json?limit=100?depth=100",
-        #     headers={"User-agent": "your bot 0.1"},
-        # ).json()
-        # print(json.dumps(comment_resp, indent=4))  # tab in-between
+            # recursively loop through comments, append each to comment_string
+            # when done, comment_string to parse_string
+            parse_string += depth_first_search(comment_resp)
 
-        # recursively loop through comments and append them to parse_string
-        parse_string += depth_first_search(comment_resp)
+            global comment_string
+            comment_string = " "
+    except:
+        print("Error: Reddit data is missing.")
 
-        global comment_string
-        comment_string = " "
-        # print(parse_string)
-        # sys.exit()  # DEBUG ONLY
-    remaining_subs = len(sub_reddit_list);
-    return {'string': parse_string, 'remaining_subs': remaining_subs}
+    remaining_subs = len(sub_reddit_list)
+    return {"string": parse_string, "remaining_subs": remaining_subs}
 
 
 def depth_first_search(root):
@@ -117,14 +114,3 @@ def _depth_first_search(root):
 
         # adding blank space since we search for the search term with spaces around it
         comment_string += " "
-
-        # no children/done? evaluate self
-
-
-# check for children
-
-
-# if children, start with left one
-
-
-# if no children, done
