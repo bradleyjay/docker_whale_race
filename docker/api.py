@@ -20,6 +20,11 @@ def race_settings():
         # what if there's less than 5 words?
         array_of_words = ["dog", "computer", "protest"]
 
+        # for testing only - replace when we know what frontend will send
+        print("Generating docker compose")
+        inputs = request.get_json()
+        print(inputs)
+
         yaml_writer([array_of_words, start_time, duration])
 
         # what is this function?
@@ -31,17 +36,15 @@ def race_settings():
 @app.route('/report_progress', methods=('GET', 'POST'))
 def report_progress():
     if request.method == 'POST':
-        # how do we access these variables when they're sent?
-        word
-        cum_instances_found
-        race_completed
 
         # first time race_completed is true for any whale, frontend should trigger win evaluation
 
+        progress = request.get_json()
+        print(progress)
 
         # call front-end update function
         # THIS ISN'T A REAL FUNCTION YET
-        update_site({"word": word, "cum_instances_found": cum_instances_found, "race_completed": race_completed})
+        # update_site({"word": word, "cum_instances_found": cum_instances_found, "race_completed": race_completed})
         return "started!"
     else:
         return "error"

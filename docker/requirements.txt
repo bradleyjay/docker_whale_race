@@ -1,11 +1,9 @@
 certifi==2019.11.28
 chardet==3.0.4
 idna==2.9
-PyYAML==5.3.1
-requests==2.23.0
-urllib3==1.25.8
 importlib-metadata==1.6.0
 inflect==4.1.0
+PyYAML==5.3.1
 requests==2.23.0
 urllib3==1.25.8
 zipp==3.1.0

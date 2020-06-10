@@ -34,7 +34,6 @@ def yaml_writer(race_data):
 
     # load it
     compose_yaml_array = yaml.load(stream)
-    print(compose_yaml_array["services"]["whale_0"])
 
     # create template for copying
     template = copy.deepcopy(compose_yaml_array["services"]["whale_0"])
@@ -64,7 +63,7 @@ def yaml_writer(race_data):
     # -----
 
     # finally, write it
-    print("Output Array: \n" + str(compose_yaml_array["services"]))
+    print("Created " + str(len(array_of_words)) + " whales")
 
     f = open("docker-compose.yaml", "w+")
     f.write(yaml.dump(compose_yaml_array))
@@ -72,7 +71,7 @@ def yaml_writer(race_data):
 
 # # debug:
 # # race_data = [array_of_words, start_time, duration]
-# fake_race_data = [["dog", "computer", "anything but pineapple"], int(datetime.datetime.now().timestamp()), 1000]
+# fake_race_data = [["dog", "computer", "protest"], int(datetime.datetime.now().timestamp()), 1000]
 # # fake_race_data = [["beer", "gin"], 10, 60]]
 #
 # yaml_writer(fake_race_data)

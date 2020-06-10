@@ -6,6 +6,7 @@
 3. Run all the whale race setup steps
 4. Send a POST to the endpoint to test:
 `curl -X POST http://localhost:5000/race_settings`
+or `curl -d '{"user": "user1", "pass": "abcd"}' -H 'Content-Type: application/json' http://localhost:5000/race_settings` to post JSON
 
 ## Docker Whale Race
 
@@ -29,14 +30,14 @@
 `./startup_script.sh `
 
 6. [if not using API] Generate our up-to-date docker-compose.yaml:
-
+uncommment test function at end of yaml_reader.py
 `python3 yaml_reader.py`
 
 Success! The containers are running. Relevant commands:
 
 - List running containers and container IDs: `docker ps`
 - Jump into a container: `docker exec -it <container ID> bash`
-- Check docker code output from local machine: `docker logs -f <container ID>`
+- Check docker code output from local machine: `docker logs -f <container ID>` (or `docker-compose logs --tail="all" -f whale_0`)
 - Check env variable (from container): `echo $WORD`
 - Remove all running containers: `docker container kill $(docker ps -q)`
 
