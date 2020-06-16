@@ -1,10 +1,12 @@
 ## Start the API Flask Server
 1. Give the API Flask script execute permissions:
 `chmod +x docker/run_api.sh`
-2. Open a new terminal tab, and start the API Flask server:
-`./docker/run_api.sh`
-3. Run all the whale race setup steps
-4. Send a POST to the endpoint to test:
+2. Open a new terminal tab, navigate to docker directory
+  `cd docker`
+3. start the API Flask server:
+`./run_api.sh`
+4. Run all the whale race setup steps
+5. Send a POST to the endpoint to test:
 `curl -X POST http://localhost:5000/race_settings`
 or `curl -d '{"user": "user1", "pass": "abcd"}' -H 'Content-Type: application/json' http://localhost:5000/race_settings` to post JSON
 
