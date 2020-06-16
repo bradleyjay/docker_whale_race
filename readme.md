@@ -47,3 +47,5 @@ These are handled by our scripts above, but for reference:
 
 - Compile docker image: `docker build .`
 - Spin up docker containers: `docker-compose up -d`
+
+Test
