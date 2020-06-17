@@ -7,14 +7,19 @@
 `./run_api.sh`
 4. Run all the whale race setup steps
 5. Send a POST to the endpoint to test:
-`curl -X POST http://localhost:5000/race_settings`
-or `curl -d '{"user": "user1", "pass": "abcd"}' -H 'Content-Type: application/json' http://localhost:5000/race_settings` to post JSON
+`curl -X POST http://localhost:8080/race_settings`
+or `curl -d '{"user": "user1", "pass": "abcd"}' -H 'Content-Type: application/json' http://localhost:8080/race_settings` to post JSON
 
 ## Docker Whale Race
 
 1. Ensure you have Docker and Python installed.
-2. Start the Docker Daemon.
-3. If not present, create a virtual environment:
+2. Be sure you've installed PyYAML and Flask:
+
+`pip3 install pyyaml`
+`pip3 install flask`
+
+3. Start the Docker Daemon.
+4. If not present, create a virtual environment:
 
 `python3 -m venv venv`
 
@@ -32,7 +37,7 @@ or `curl -d '{"user": "user1", "pass": "abcd"}' -H 'Content-Type: application/js
 `./startup_script.sh `
 
 6. [if not using API] Generate our up-to-date docker-compose.yaml:
-uncommment test function at end of yaml_reader.py
+uncomment test function at end of yaml_reader.py
 `python3 yaml_reader.py`
 
 Success! The containers are running. Relevant commands:

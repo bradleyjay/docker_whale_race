@@ -4,9 +4,10 @@ from yaml_reader import yaml_writer
 
 app = Flask(__name__)
 
-@app.route('/race_settings', methods=('GET', 'POST'))
+
+@app.route("/race_settings", methods=("GET", "POST"))
 def race_settings():
-    if request.method == 'POST':
+    if request.method == "POST":
 
         # word1 = request.form['word1']
         # word2 = request.form['word2']
@@ -15,10 +16,10 @@ def race_settings():
         # word5 = request.form['word5']
         start_time = int(datetime.datetime.now().timestamp())
         # duration = request.form['duration']
-        duration = 1000;
+        duration = 100000
 
         # what if there's less than 5 words?
-        array_of_words = ["dog", "computer", "protest"]
+        array_of_words = ["dog", "blerb", "protest"]
 
         # for testing only - replace when we know what frontend will send
         print("Generating docker compose")
@@ -33,9 +34,10 @@ def race_settings():
     else:
         return "error"
 
-@app.route('/report_progress', methods=('GET', 'POST'))
+
+@app.route("/report_progress", methods=("GET", "POST"))
 def report_progress():
-    if request.method == 'POST':
+    if request.method == "POST":
 
         # first time race_completed is true for any whale, frontend should trigger win evaluation
 

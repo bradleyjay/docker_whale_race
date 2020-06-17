@@ -2,6 +2,7 @@ import yaml
 import copy
 import subprocess
 import datetime
+import time
 
 """
 For next time:
@@ -16,15 +17,14 @@ For next time:
 
 def yaml_writer(race_data):
 
-    subprocess.getstatusoutput("docker container kill $(docker ps -q)")
-    subprocess.getstatusoutput("docker-compose up -d")
-
     # unpack the list of words from frontend's array; dummy vars
     # race_data = [array_of_words, start_time, duration]
 
     start_time = "RACE_START=" + str(race_data[1])
     duration = "RACE_DURATION=" + str(race_data[2])
     array_of_words = race_data[0]
+
+    print("reached")
 
     docker_image_id = subprocess.getstatusoutput("docker images -q docker_shocker")
 
@@ -63,10 +63,20 @@ def yaml_writer(race_data):
     # -----
 
     # finally, write it
-    print("Created " + str(len(array_of_words)) + " whales")
-
     f = open("docker-compose.yaml", "w+")
     f.write(yaml.dump(compose_yaml_array))
+    # print(f)
+    # time.sleep(2)
+    subprocess.getstatusoutput("docker container kill $(docker ps -q)")
+
+    # this line below returns an error:
+    # (1, "Top level object in './docker-compose.yaml' needs to be an object not '<class 'NoneType'>'.")
+    # the compose does work when called manually, the docker-compose.yaml is not recognized. Passing it the filename
+    # manually doesn't work either. Not sure if it's because version: '3' is at the bottom of the file? something is up
+
+    print(subprocess.getstatusoutput("docker-compose up -d"))
+
+    print("Created " + str(len(array_of_words)) + " whales")
 
 
 # # debug:
