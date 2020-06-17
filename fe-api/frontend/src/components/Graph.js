@@ -1,74 +1,62 @@
 import React from 'react';
-import './graph.css';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import {BarChart} from './Barchart'
 
-am4core.useTheme(am4themes_animated);
+// Create the chart from amChart library
+let chart = am4core.create("chartdiv", am4charts.XYChart);
 
-// class Graph extends React.Component {
-//     constructor(props) {
-//         super(props)
-//         this.state= {
-//             array_of_words: [],
-//             array_of_whales: [],
-//             start_time: 0,
-//             duration: 0
-//         }
-//     }
+// Creates categories/qualitative on Y-axis
+let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "word";
+categoryAxis.title.text = "Whales Go here)";
 
-//     // handleChange = (e) => {
-//     //     const {array_of_words, value} = e.target;
-//     //     this.setState(prevState => ({
-//     //         ...prevState,
-//     //         [array_of_words]: target
-//     //     }))
-//     // }
+// Creates values/quantitative on X-axis
+let valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+valueAxis.min = 0;
+valueAxis.dataFields.value = "cumsum";
+valueAxis.title.text = "Whale Times Here";
 
-//     render() {
-//         return (
-//            <h1>graph</h1>
-//         )
-//     }
+// Associates the categorical/quantitative data to datafields
+let series = chart.series.push(new am4charts.ColumnSeries());
+series.dataFields.categoryY = "word";
+series.dataFields.valueX = "cumsum";
 
-// }
+// Actual data
+chart.data = [{
+  "word": "Whale1",
+  "cumsum": 501
+}, {
+  "word": "Whale2",
+  "cumsum": 301
+}, {
+  "word": "Whale3",
+  "cumsum": 201
+}, {
+  "word": "Whale4",
+  "cumsum": 165
+}
+];
 
-// export default Graph
 
-let data = [
-    {
-      groupName: "today's lunch items",
-      data: [{
-        label: "apples",
-        value: 1
-      },
-      {
-        label: "nuts",
-        value: 50
-      },
-      {
-        label: "cups of coffee",
-        value: 99
-      }
-    ]},
-  ];
 
 class Graph extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+  componentDidMount() {
+    let chart = am4core.create("chartdiv", am4charts.XYChart);
 
+    this.chart = chart;
+  }
 
-    render() {
-        return (
-          <div className="chart">
-            <header className="chart-container">
-              <BarChart chartId="chart" data={data} categoryLabel="item" valueLabel="count"/>
-            </header>
-          </div>
-        )
+  componentWillUnmount() {
+    if (this.chart) {
+      this.chart.dispose();
     }
+  }
+
+  render() {
+    return (
+      <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+    );
+  }
 }
 
-  export default Graph
+export default Graph;
