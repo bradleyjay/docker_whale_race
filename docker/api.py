@@ -16,7 +16,7 @@ def race_settings():
         # word5 = request.form['word5']
         start_time = int(datetime.datetime.now().timestamp())
         # duration = request.form['duration']
-        duration = 100000
+        duration = 10000
 
         # what if there's less than 5 words?
         array_of_words = ["dog", "blerb", "protest"]
