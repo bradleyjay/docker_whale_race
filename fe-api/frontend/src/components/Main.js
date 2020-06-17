@@ -6,9 +6,12 @@ export class Main extends Component {
     constructor() {
       super();
       this.state = {
-        word1: '',
-        word2: '',
-        word3: '',
+        word1: 'word1',
+        word2: 'word2',
+        word3: 'word3',
+        count1: 10,
+        count2: 20,
+        count3: 30,
         duration: 0,
         formNeeded: true
       };
@@ -30,25 +33,28 @@ export class Main extends Component {
         //     word2: '',
         //     word3: '',
         //     duration: 0
-        // });    
+        // });
     };
 
     render() {
         return (
             <div className="flex-row">
-                <div className = "padding">
-                <Form 
-                    handleChange = {this.handleChange}
-                    handleSubmit = {this.handleSubmit}
-                    word1={this.state.word1}
-                    word2={this.state.word2}
-                    word3={this.state.word3}
-                    duration={this.state.duration}
-                />
-                </div>
-                <div className = "padding">
-                <Graph/>
-                </div>
+              <Form 
+                handleChange = {this.handleChange}
+                handleSubmit = {this.handleSubmit}
+                word1={this.state.word1}
+                word2={this.state.word2}
+                word3={this.state.word3}
+                duration={this.state.duration}
+              />
+              <Graph
+                count1={this.state.count1}
+                count2={this.state.count2}
+                count3={this.state.count3}
+                word1={this.state.word1}
+                word2={this.state.word2}
+                word3={this.state.word3}
+              />
             </div>
         )
     }
