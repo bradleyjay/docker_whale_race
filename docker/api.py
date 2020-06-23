@@ -39,14 +39,15 @@ def race_settings():
 def report_progress():
     if request.method == "POST":
 
+        # Done! Containers are posting a JSON here, of:
+        # {'word': 'blerb', 'cum_instances_found': 0, 'new_instances_found': 0, 'race_completed': False}
+        # We can either trigger React things here, or replace this endpoint with a React endpoint directly.
+
         # first time race_completed is true for any whale, frontend should trigger win evaluation
 
         progress = request.get_json()
         print(progress)
 
-        # call front-end update function
-        # THIS ISN'T A REAL FUNCTION YET
-        # update_site({"word": word, "cum_instances_found": cum_instances_found, "race_completed": race_completed})
         return "started!"
     else:
         return "error"

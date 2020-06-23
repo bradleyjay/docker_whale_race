@@ -33,7 +33,7 @@ results = {
     "race_completed": False,
 }
 
-api_endpoint = "http://host.docker.internal:8081/report_progress"
+api_endpoint = "http://host.docker.internal:8080/report_progress"
 
 post_headers = {"content-type": "application/json"}
 
