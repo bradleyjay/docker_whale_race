@@ -2,6 +2,7 @@ import yaml
 import copy
 import subprocess
 import datetime
+import time
 
 """
 For next time:
@@ -23,6 +24,8 @@ def yaml_writer(race_data):
     duration = "RACE_DURATION=" + str(race_data[2])
     array_of_words = race_data[0]
 
+    print("reached")
+
     docker_image_id = subprocess.getstatusoutput("docker images -q docker_shocker")
 
     ################
@@ -31,7 +34,6 @@ def yaml_writer(race_data):
 
     # load it
     compose_yaml_array = yaml.load(stream)
-    print(compose_yaml_array["services"]["whale_0"])
 
     # create template for copying
     template = copy.deepcopy(compose_yaml_array["services"]["whale_0"])
@@ -61,20 +63,11 @@ def yaml_writer(race_data):
     # -----
 
     # finally, write it
-    print("Output Array: \n" + str(compose_yaml_array["services"]))
-
     f = open("docker-compose.yaml", "w+")
     f.write(yaml.dump(compose_yaml_array))
+    f.close()  # for the love of god, this line must remain. docker-compose up cannot read the .yaml without it.
 
+    subprocess.getstatusoutput("docker container kill $(docker ps -q)")
+    print(subprocess.getstatusoutput("docker-compose up -d"))
 
-# debug:
-# race_data = [array_of_words, start_time, duration]
-fake_race_data = [["dog", "computer", "anything but pineapple"], int(datetime.datetime.now().timestamp()), 1000]
-# fake_race_data = [["beer", "gin"], 10, 60]]
-
-yaml_writer(fake_race_data)
-subprocess.getstatusoutput("docker container kill $(docker ps -q)")
-subprocess.getstatusoutput("docker-compose up -d")
-output1 = subprocess.getstatusoutput("docker ps")  # better than nothing, ugly
-print("I made some whales.")
-print(output1)
+    print("Created " + str(len(array_of_words)) + " whales")
