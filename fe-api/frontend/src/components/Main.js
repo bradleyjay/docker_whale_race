@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Graph from './Graph'
-import Form from './Form'
+import FormLeftPanel from './FormLeftPanel'
+import CompletedLeftPanel from './CompletedLeftPanel'
+import InProgressLeftPanel from './InProgressLeftPanel'
 
 export class Main extends Component {
     constructor() {
@@ -13,7 +15,8 @@ export class Main extends Component {
         count2: 20,
         count3: 30,
         duration: 0,
-        formNeeded: true
+        gameState: 0 // Form = 0, InProgress = 1, Completed = 2
+
       };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +42,7 @@ export class Main extends Component {
     render() {
         return (
             <div className="flex-row">
-              <Form 
+              <FormLeftPanel 
                 handleChange = {this.handleChange}
                 handleSubmit = {this.handleSubmit}
                 word1={this.state.word1}
@@ -47,6 +50,8 @@ export class Main extends Component {
                 word3={this.state.word3}
                 duration={this.state.duration}
               />
+              <InProgressLeftPanel/>
+              <CompletedLeftPanel/>
               <Graph
                 count1={this.state.count1}
                 count2={this.state.count2}
