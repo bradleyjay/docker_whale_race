@@ -57,4 +57,6 @@ These are handled by our scripts above, but for reference:
 
 - Frontend:
   - Node: `brew install node`
-
+  - Go inside "frontend" folder 
+  - Install dependencies: `npm install`
+  - Run npm: `npm start`
