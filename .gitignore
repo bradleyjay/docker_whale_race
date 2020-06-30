@@ -1,4 +1,30 @@
+#global ignores
 venv
 __pycache__*
 .vscode
 .DS_Store
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/fe-api/node_modules
+/fe-api/.pnp
+/fe-api/.pnp.js
+/fe-api/package-lock.json
+
+# testing
+/fe-api/coverage
+
+# production
+/fe-api/build
+
+# misc
+/fe-api/.DS_Store
+/fe-api/.env.local
+/fe-api/.env.development.local
+/fe-api/.env.test.local
+/fe-api/.env.production.local
+
+/fe-api/npm-debug.log*
+/fe-api/yarn-debug.log*
+/fe-api/yarn-error.log*
