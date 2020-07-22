@@ -15,6 +15,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 //Setting up a socket with the namespace "connection" for new sockets
+console.log("Middleware here.")
 io.on("connection", socket => {
     console.log("New client connected");
 

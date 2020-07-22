@@ -11,18 +11,22 @@ class App extends Component {
     this.state = {
       response: 0,
       endpoint: "http://127.0.0.1:4001"
+      // endpoint: ""
     };
   }
   componentDidMount() {
+    console.log('Start DidMount')
     const { endpoint } = this.state;
     // connect to the socket
     const socket = socketIOClient(endpoint);
     // listen for outgoing data and supply a callback
     // updates the state var when receiving a callback
     socket.on("outgoing data", data => this.setState({ response: data.num }));
+    console.log("End DidMount.")
   }
 
   render() {
+    console.log("Mid-render.")
     const { response } = this.state
     return (
       <div className="App">
