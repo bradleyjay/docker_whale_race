@@ -21,12 +21,14 @@ class App extends Component {
     const socket = socketIOClient(endpoint);
     // listen for outgoing data and supply a callback
     // updates the state var when receiving a callback
-    socket.on("outgoing data", data => this.setState({ response: data.num }));
+    // socket.on("outgoing data", data => this.setState({ response: data.num }));
+    socket.on("incoming data", data => this.setState({ response: data }));
     console.log("End DidMount.")
   }
 
   render() {
     console.log("Mid-render.")
+    console.log(this.state.response)
     const { response } = this.state
     return (
       <div className="App">

@@ -18,6 +18,7 @@ const io = socketIo(server);
 console.log("Middleware here.")
 io.on("connection", socket => {
     console.log("New client connected");
+    socket.emit("incoming data", 4);
 
     //Here we listen on a new namespace called "incoming data"
     socket.on("incoming data", (data) => {
@@ -30,3 +31,4 @@ io.on("connection", socket => {
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
+
