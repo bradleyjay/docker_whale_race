@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      response: 0,
+      response: {val1: 17, val2: 38},
       endpoint: "http://127.0.0.1:4001"
       // endpoint: ""
     };
@@ -22,7 +22,10 @@ class App extends Component {
     // listen for outgoing data and supply a callback
     // updates the state var when receiving a callback
     // socket.on("outgoing data", data => this.setState({ response: data.num }));
-    socket.on("incoming data", data => this.setState({ response: data }));
+    socket.on("incoming data", data => {
+        console.log(data);
+        this.setState({ response: data })
+      });
     console.log("End DidMount.")
   }
 

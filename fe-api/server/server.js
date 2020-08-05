@@ -18,12 +18,12 @@ const io = socketIo(server);
 console.log("Middleware here.")
 io.on("connection", socket => {
     console.log("New client connected");
-    socket.emit("incoming data", 4);
+    socket.emit("incoming data", {'val1': 1, 'val2': 2});
 
     //Here we listen on a new namespace called "incoming data"
     socket.on("incoming data", (data) => {
         //Here we broadcast it out to all other sockets EXCLUDING the socket which sent us the data
-        socket.broadcast.emit("outgoing data", { num: data });
+        socket.broadcast.emit("incoming data", { num: data });
     });
 
     //A special namespace "disconnect" for when a client disconnects
@@ -31,4 +31,3 @@ io.on("connection", socket => {
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
-
