@@ -24,5 +24,13 @@ def disconnect():
 
 sio.connect("http://localhost:4001")
 
-my_message({"val1": 123, "val2": 234})
+results = {
+    "word": "parabola",
+    "cum_instances_found": 45,
+    "new_instances_found": 0,
+    "race_completed": False,
+    "whalenumber": str(3),
+}
 
+# my_message({"val1": 123, "val2": 234})
+my_message(results)

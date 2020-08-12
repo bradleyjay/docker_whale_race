@@ -16,6 +16,8 @@ input_word = input_word_original.lower()
 
 race_duration_seconds = int(os.getenv("RACE_DURATION"))
 
+whalenumber = str(os.getenv("WHALENUMBER"))
+
 # sample inputs for debugging
 # race_start_timestamp = int(datetime.now().timestamp())
 # input_word = "dog"
@@ -26,11 +28,13 @@ race_end_timestamp = race_start_timestamp + race_duration_seconds
 
 is_active = True
 
+
 results = {
     "word": input_word,
     "cum_instances_found": 0,
     "new_instances_found": 0,
     "race_completed": False,
+    "whalenumber": whalenumber,
 }
 
 api_endpoint = "http://host.docker.internal:8080/report_progress"

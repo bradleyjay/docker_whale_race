@@ -9,7 +9,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      response: {val1: 17, val2: 38},
+      response: { val1: 17, val2: 38 },
+      race_duration: 0,
+      race_start: 0,
+      // whaledata: [], // assign at form submission
+      whaledata: { '0': 0, '1': 0, '2': 0, '3': 0, '4': 0 },
       endpoint: "http://127.0.0.1:4001"
       // endpoint: ""
     };
@@ -23,15 +27,40 @@ class App extends Component {
     // updates the state var when receiving a callback
     // socket.on("outgoing data", data => this.setState({ response: data.num }));
     socket.on("incoming data", data => {
-        console.log(data);
-        this.setState({ response: data })
+      console.log("This is the incoming data:")
+      console.log(data);
+
+      //unpack yo stuff
+      const index_key = data["whalenumber"]
+      const count = data["cum_instances_found"]
+
+      // update state, reassign state
+
+      this.setState({
+        whaledata: {
+          ...this.state.whaledata,
+          [index_key]: count
+        }
       });
+    });
     console.log("End DidMount.")
   }
+
+  /* Object from WHALES
+    results = {
+      "word": input_word,
+      "cum_instances_found": 0,
+      "new_instances_found": 0,
+      "race_completed": False,
+      "whalenumber": whalenumber,
+  }
+  */
+
 
   render() {
     console.log("Mid-render.")
     console.log(this.state.response)
+    console.log(this.state)
     const { response } = this.state
     return (
       <div className="App">
