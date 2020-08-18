@@ -55,8 +55,18 @@ These are handled by our scripts above, but for reference:
 
 ## Setup Requirements
 
-- Frontend:
+- Install Frontend:
   - Node: `brew install node`
   - Go inside "frontend" folder 
   - Install dependencies: `npm install`
-  - Run npm: `npm start`
+
+### Create the socket.io connection
+- Run Frontend:
+  - `cd docker_whale_race/fe-api`
+  - `npm start`
+- Start middleware: 
+  - `cd docker_whale_race/fe-api/server`
+  - `node server.js`
+
+- Start Python test script server (will replace later)
+  - `python3 docker/app/python_server.py`

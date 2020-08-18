@@ -50,6 +50,8 @@ def yaml_writer(race_data):
 
         # place it in the array
         whalename = str("whale_" + str(i))
+        whalenumber = "WHALENUMBER=" + str(i)
+
         compose_yaml_array["services"][whalename] = temp_copy
         # print(compose_yaml_array["services"])
 
@@ -58,6 +60,7 @@ def yaml_writer(race_data):
             word_to_be,
             start_time,
             duration,
+            whalenumber,
         ]
 
     # -----
