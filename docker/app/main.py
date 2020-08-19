@@ -73,10 +73,13 @@ while is_active:
     is_active = time.time() < race_end_timestamp
 
     results["race_completed"] = not is_active
-
+    
+    print("before try-except")
     try:  # must use a TRY here, otherwise, if this send fails, the container quits out.
         # requests.post(url=api_endpoint, data=json.dumps(results), headers=post_headers)
+        print("before sio.connect")
         sio.connect("http://localhost:4001")
+        print("after sio.connect and before my_message")
         my_message(results)
 
     except:

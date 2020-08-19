@@ -82,3 +82,9 @@ These are handled by our scripts above, but for reference:
 #### Manual Python socket.io test:
 - Start Python test script server (will replace later)
   - `python3 docker/app/python_server.py`
+
+
+## Docker Troubleshooting Commands
+- After curling, you can `docker ps` and use the following commands to troubleshoot.
+  - To bash into the docker container, use `docker exec -it <container-id> bash`.
+  - To view logs for container, use `docker logs -f <container-name>`.

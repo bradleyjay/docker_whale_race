@@ -4,6 +4,8 @@ services:
   whale_0:
     image: 3679bdbfe1a1
     command: bash -c "python3 main.py"
+    # look back at localhost:4001 in main.py and see how to set it in a container
+    network_mode: "host"
     environment:
       - WORD=fake_word
       - RACE_START=fake_start
