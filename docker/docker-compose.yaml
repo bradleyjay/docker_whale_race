@@ -3,24 +3,24 @@ services:
     command: bash -c "python3 main.py"
     environment:
     - WORD=dog
-    - RACE_START=1597797841
+    - RACE_START=1597798635
     - RACE_DURATION=10000
     - WHALENUMBER=0
-    image: c4f7052a4382
+    image: db076ed91d0d
   whale_1:
     command: bash -c "python3 main.py"
     environment:
     - WORD=blerb
-    - RACE_START=1597797841
+    - RACE_START=1597798635
     - RACE_DURATION=10000
     - WHALENUMBER=1
-    image: c4f7052a4382
+    image: db076ed91d0d
   whale_2:
     command: bash -c "python3 main.py"
     environment:
     - WORD=protest
-    - RACE_START=1597797841
+    - RACE_START=1597798635
     - RACE_DURATION=10000
     - WHALENUMBER=2
-    image: c4f7052a4382
+    image: db076ed91d0d
 version: '3'
