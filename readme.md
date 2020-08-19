@@ -9,7 +9,7 @@
 `./run_api.sh`
 
 
-## Docker Whale Race
+## Docker Preparation
 
 0. Create another new tab in your terminal app.
 1. Ensure you have Docker and Python installed.
@@ -46,11 +46,13 @@
 
 
 2. Start middleware: 
+  - Create a new tab in your terminal app.
   - `cd docker_whale_race/fe-api/server`
   - `node server.js`
 
 ## Finally, trigger the Docker spin-up script
 
+0. Finally, return to the tab where we ran the Docker Preparation.
 1. Send a POST to the endpoint to test:
 `curl -X POST http://localhost:8080/race_settings`
 or `curl -d '{"user": "user1", "pass": "abcd"}' -H 'Content-Type: application/json' http://localhost:8080/race_settings` to post JSON
