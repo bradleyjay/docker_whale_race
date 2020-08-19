@@ -7,6 +7,25 @@ import os
 import requests
 import json
 
+import socketio
+
+# initialize socketio Client and define decorators for socket functionality
+sio = socketio.Client()
+
+@sio.event
+def connect():
+    print("connection established")
+
+
+@sio.event
+def my_message(data):
+    print("message received with ", data)
+    sio.emit("incoming data", data)
+
+@sio.event
+def disconnect():
+    print("disconnected from server")
+
 # get starting timestamp from api.py file that interacts with API
 race_start_timestamp = int(os.getenv("RACE_START"))
 
@@ -27,6 +46,8 @@ whalenumber = str(os.getenv("WHALENUMBER"))
 race_end_timestamp = race_start_timestamp + race_duration_seconds
 
 is_active = True
+
+
 
 
 results = {
@@ -54,7 +75,10 @@ while is_active:
     results["race_completed"] = not is_active
 
     try:  # must use a TRY here, otherwise, if this send fails, the container quits out.
-        requests.post(url=api_endpoint, data=json.dumps(results), headers=post_headers)
+        # requests.post(url=api_endpoint, data=json.dumps(results), headers=post_headers)
+        sio.connect("http://localhost:4001")
+        my_message(results)
+        
     except:
         print(
             "Error - POST failed"
