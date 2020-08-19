@@ -78,7 +78,7 @@ while is_active:
         # requests.post(url=api_endpoint, data=json.dumps(results), headers=post_headers)
         sio.connect("http://localhost:4001")
         my_message(results)
-        
+
     except:
         print(
             "Error - POST failed"

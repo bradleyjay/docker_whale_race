@@ -1,1 +1,1 @@
-docker build -t docker_shocker .
+docker build --no-cache -t docker_shocker . 
