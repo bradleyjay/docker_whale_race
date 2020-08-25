@@ -7,6 +7,28 @@ import os
 import requests
 import json
 
+import socketio
+
+# initialize socketio Client and define decorators for socket functionality
+sio = socketio.Client()
+
+
+@sio.event
+def connect():
+    print("connection established", flush=True)
+
+
+@sio.event
+def my_message(data):
+    print("message received with ", data, flush=True)
+    sio.emit("incoming data", data)
+
+
+@sio.event
+def disconnect():
+    print("disconnected from server", flush=True)
+
+
 # get starting timestamp from api.py file that interacts with API
 race_start_timestamp = int(os.getenv("RACE_START"))
 
@@ -41,6 +63,9 @@ api_endpoint = "http://host.docker.internal:8080/report_progress"
 
 post_headers = {"content-type": "application/json"}
 
+print("before sio.connect", flush=True)
+sio.connect("http://host.docker.internal:4001")
+
 while is_active:
     parse_results = parse(input_word)
     new_instances_found = parse_results["total_count"]
@@ -53,8 +78,13 @@ while is_active:
 
     results["race_completed"] = not is_active
 
+    print("before try-except")
     try:  # must use a TRY here, otherwise, if this send fails, the container quits out.
-        requests.post(url=api_endpoint, data=json.dumps(results), headers=post_headers)
+        # requests.post(url=api_endpoint, data=json.dumps(results), headers=post_headers)
+
+        print("after sio.connect and before my_message", flush=True)
+        my_message(results)
+
     except:
         print(
             "Error - POST failed"
