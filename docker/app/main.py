@@ -12,19 +12,22 @@ import socketio
 # initialize socketio Client and define decorators for socket functionality
 sio = socketio.Client()
 
+
 @sio.event
 def connect():
-    print("connection established")
+    print("connection established", flush=True)
 
 
 @sio.event
 def my_message(data):
-    print("message received with ", data)
+    print("message received with ", data, flush=True)
     sio.emit("incoming data", data)
+
 
 @sio.event
 def disconnect():
-    print("disconnected from server")
+    print("disconnected from server", flush=True)
+
 
 # get starting timestamp from api.py file that interacts with API
 race_start_timestamp = int(os.getenv("RACE_START"))
@@ -48,8 +51,6 @@ race_end_timestamp = race_start_timestamp + race_duration_seconds
 is_active = True
 
 
-
-
 results = {
     "word": input_word,
     "cum_instances_found": 0,
@@ -62,6 +63,9 @@ api_endpoint = "http://host.docker.internal:8080/report_progress"
 
 post_headers = {"content-type": "application/json"}
 
+print("before sio.connect", flush=True)
+sio.connect("http://host.docker.internal:4001")
+
 while is_active:
     parse_results = parse(input_word)
     new_instances_found = parse_results["total_count"]
@@ -73,13 +77,12 @@ while is_active:
     is_active = time.time() < race_end_timestamp
 
     results["race_completed"] = not is_active
-    
+
     print("before try-except")
     try:  # must use a TRY here, otherwise, if this send fails, the container quits out.
         # requests.post(url=api_endpoint, data=json.dumps(results), headers=post_headers)
-        print("before sio.connect")
-        sio.connect("http://localhost:4001")
-        print("after sio.connect and before my_message")
+
+        print("after sio.connect and before my_message", flush=True)
         my_message(results)
 
     except:
