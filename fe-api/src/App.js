@@ -9,13 +9,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      response: { val1: 17, val2: 38 },
-      race_duration: 0,
+      // response: { val1: 17, val2: 38 },
+      race_duration: 302,
       race_start: 0,
-      // whaledata: [], // assign at form submission
       whaledata: { '0': 0, '1': 0, '2': 0, '3': 0, '4': 0 },
       endpoint: "http://127.0.0.1:4001"
-      // endpoint: ""
     };
   }
   componentDidMount() {
@@ -59,13 +57,14 @@ class App extends Component {
 
   render() {
     console.log("Mid-render.")
-    console.log(this.state.response)
+    // console.log(this.state.response)
     console.log(this.state)
-    const { response } = this.state
+    // const { response } = this.state
     return (
       <div className="App">
         <Main
-        // response={this.response}
+          whaledata={this.state.whaledata}
+          duration={this.state.race_duration}
         />
       </div>
     )

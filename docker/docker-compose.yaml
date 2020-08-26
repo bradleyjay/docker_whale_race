@@ -3,7 +3,7 @@ services:
     command: bash -c "python3 main.py"
     environment:
     - WORD=dog
-    - RACE_START=1598398460
+    - RACE_START=1598401949
     - RACE_DURATION=10000
     - WHALENUMBER=0
     image: ff46034622e9
@@ -11,7 +11,7 @@ services:
     command: bash -c "python3 main.py"
     environment:
     - WORD=blerb
-    - RACE_START=1598398460
+    - RACE_START=1598401949
     - RACE_DURATION=10000
     - WHALENUMBER=1
     image: ff46034622e9
@@ -19,7 +19,7 @@ services:
     command: bash -c "python3 main.py"
     environment:
     - WORD=protest
-    - RACE_START=1598398460
+    - RACE_START=1598401949
     - RACE_DURATION=10000
     - WHALENUMBER=2
     image: ff46034622e9
