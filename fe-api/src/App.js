@@ -10,9 +10,10 @@ class App extends Component {
     super();
     this.state = {
       // response: { val1: 17, val2: 38 },
-      race_duration: 302,
-      race_start: 0,
+      // race_duration: 302,
+      // race_start: 0,
       whaledata: { '0': 0, '1': 0, '2': 0, '3': 0, '4': 0 },
+      gameState: 0, // Form = 0, InProgress = 1, Completed = 2
       endpoint: "http://127.0.0.1:4001"
     };
   }
@@ -64,7 +65,6 @@ class App extends Component {
       <div className="App">
         <Main
           whaledata={this.state.whaledata}
-          duration={this.state.race_duration}
         />
       </div>
     )

@@ -44,13 +44,13 @@ class Graph extends React.Component {
   render() {
     // Actual data
     chart.data = [{
-      "word": this.props.word1,
+      "word": this.props.list_of_words[0],
       "cumsum": this.props.count1
     }, {
-      "word": this.props.word2,
+      "word": this.props.list_of_words[1],
       "cumsum": this.props.count2
     }, {
-      "word": this.props.word3,
+      "word": this.props.list_of_words[2],
       "cumsum": this.props.count3
     }
     ];

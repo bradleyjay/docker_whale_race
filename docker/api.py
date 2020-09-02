@@ -18,12 +18,17 @@ def race_settings():
         # duration = request.form['duration']
         duration = 10000
 
+        # print('DATA')
+        # print(response.json)
         # what if there's less than 5 words?
         array_of_words = ["dog", "blerb", "protest"]
 
         # for testing only - replace when we know what frontend will send
         print("Generating docker compose")
+        print(request)
+        # print(request.Form)
         inputs = request.get_json()
+        # inputs = json.loads(request)
         print(inputs)
 
         yaml_writer([array_of_words, start_time, duration])
