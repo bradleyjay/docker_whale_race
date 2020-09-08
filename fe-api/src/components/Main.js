@@ -44,38 +44,27 @@ export class Main extends Component {
   };
 
   handleSubmit = event => {
+    console.log("setting start time")
     this.setState({
-      start_time: Math.floor(Date.now() / 1000)
+      start_time: (Date.now() / 1000)
     })
     console.log(this.state)
-    $.ajax({
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      type: "POST",
-      // crossDomain: true,
-      contentType: "application/json;charset=utf-8",
-      url: "http://localhost:8080/race_settings",
-      traditional: "true",
-      data: JSON.stringify(this.state),
-      dataType: "json",
-      error: function(data){
-  	   console.log("POST FAILED")
-  	  }
-    })
-    // async function postData(url = '', data = {}) {
-    //   console.log('SENDING')
-    //   console.log(data);
-    //   const response = await fetch(url, {
-    //     method: 'POST',
-    //     mode: 'no-cors',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data)
-    //   });
-    //   return 'form sent';
-    // }
-    //
-    // postData('http://localhost:8080/race_settings', this.state);
+
+    async function postData(url = '', data = {}) {
+      console.log('SENDING')
+      console.log(data);
+      const response = await fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      return 'form sent';
+    }
+
+    postData('http://localhost:8080/race_settings', this.state);
 
     event.preventDefault(event);
   };

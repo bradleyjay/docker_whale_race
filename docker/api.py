@@ -9,27 +9,22 @@ app = Flask(__name__)
 def race_settings():
     if request.method == "POST":
 
-        # word1 = request.form['word1']
-        # word2 = request.form['word2']
-        # word3 = request.form['word3']
-        # word4 = request.form['word4']
-        # word5 = request.form['word5']
-        start_time = int(datetime.datetime.now().timestamp())
-        # duration = request.form['duration']
-        duration = 10000
+        # start_time = int(datetime.datetime.now().timestamp())
+        # print(start_time)
 
-        # print('DATA')
-        # print(response.json)
+        # duration = 10000
+
         # what if there's less than 5 words?
-        array_of_words = ["dog", "blerb", "protest"]
+        # array_of_words = ["dog", "blerb", "protest"]
 
         # for testing only - replace when we know what frontend will send
         print("Generating docker compose")
-        print(request)
-        # print(request.Form)
-        inputs = request.get_json()
-        # inputs = json.loads(request)
+        inputs = request.get_json(force = True)
         print(inputs)
+
+        array_of_words = inputs['list_of_words']
+        start_time = int(inputs['start_time'])
+        duration = inputs['duration']
 
         yaml_writer([array_of_words, start_time, duration])
 
