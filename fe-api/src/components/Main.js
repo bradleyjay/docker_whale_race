@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Graph from './Graph'
-import FormLeftPanel from './FormLeftPanel'
-import CompletedLeftPanel from './CompletedLeftPanel'
-import InProgressLeftPanel from './InProgressLeftPanel'
+import LeftPanel from './LeftPanel'
 import $ from 'jquery'
 
 export class Main extends Component {
@@ -73,17 +71,16 @@ export class Main extends Component {
     // console.log("It's a whale of a taaaaaale")
     // console.log(this.props.whaledata)
     // console.log(this.state.duration)
-    // console.log(this.state)
+    console.log(`gameState: ${this.props.gameState}`)
     return (
       <div className="flex-row">
-        <FormLeftPanel
+        <LeftPanel
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           list_of_words={this.state.list_of_words}
           duration={this.state.duration}
+          gameState={this.props.gameState}
         />
-        <InProgressLeftPanel />
-        <CompletedLeftPanel />
         <Graph
           // pass down object instead of separate count props
           count1={this.props.whaledata['0']}
