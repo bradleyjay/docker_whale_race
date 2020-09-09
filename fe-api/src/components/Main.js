@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Graph from './Graph'
 import LeftPanel from './LeftPanel'
-import $ from 'jquery'
+// import $ from 'jquery'
 
 export class Main extends Component {
   constructor(props) {
@@ -12,9 +12,9 @@ export class Main extends Component {
       // word2: 'word2',
       // word3: 'word3',
       // duration: 0, // may be in app.js
-      start_time: '',
+      start_time: 0, //modified default!
       duration: 30,
-
+      gameState: 0, // Form = 0, InProgress = 1, Completed = 2
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +27,7 @@ export class Main extends Component {
     let cur_duration = this.state.duration
     let word = event.target.name
 
-    if (event.target.name.includes('word')){
+    if (event.target.name.includes('word')) {
       let word_id = word.split('word')[1] - 1
       cur_list_of_words[word_id] = event.target.value
       // console.log('WORD')
@@ -44,12 +44,17 @@ export class Main extends Component {
   handleSubmit = event => {
     console.log("setting start time")
     this.setState({
-      start_time: (Date.now() / 1000)
+      start_time: ((Date.now()) * 1000), // python conversions?
+      // start_time: ((Date.now() + 5000) / 1000), // 5 second delay!
+      gameState: 1
     })
     console.log(this.state)
 
     async function postData(url = '', data = {}) {
       console.log('SENDING')
+      console.log('GameState is:')
+      // console.log(this.state.gameState)
+      console.log(data.gameState) // this was hard. I'm keeping it. Pls.
       console.log(data);
       const response = await fetch(url, {
         method: 'POST',
@@ -71,7 +76,7 @@ export class Main extends Component {
     // console.log("It's a whale of a taaaaaale")
     // console.log(this.props.whaledata)
     // console.log(this.state.duration)
-    console.log(`gameState: ${this.props.gameState}`)
+    console.log(`gameState: ${this.state.gameState}`)
     return (
       <div className="flex-row">
         <LeftPanel
@@ -79,15 +84,18 @@ export class Main extends Component {
           handleSubmit={this.handleSubmit}
           list_of_words={this.state.list_of_words}
           duration={this.state.duration}
-          gameState={this.props.gameState}
+          gameState={this.state.gameState}
         />
-        <Graph
-          // pass down object instead of separate count props
-          count1={this.props.whaledata['0']}
-          count2={this.props.whaledata['1']}
-          count3={this.props.whaledata['2']}
-          list_of_words={this.state.list_of_words}
-        />
+        {this.state.gameState === true ?  // only show graph if game running
+          <Graph
+            // pass down object instead of separate count props
+            count1={this.props.whaledata['0']}
+            count2={this.props.whaledata['1']}
+            count3={this.props.whaledata['2']}
+            list_of_words={this.state.list_of_words}
+          />
+          : <h1> </h1>
+        }
       </div>
     )
   }
