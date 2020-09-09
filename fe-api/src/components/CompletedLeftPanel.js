@@ -7,7 +7,9 @@ export class CompletedLeftPanel extends Component {
   
     render() {
         return (
+          <div>
             <h1>A Whale Won!!!</h1>
+          </div>
       );
     }
   }

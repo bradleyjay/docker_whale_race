@@ -65,6 +65,7 @@ class App extends Component {
       <div className="App">
         <Main
           whaledata={this.state.whaledata}
+          gameState={this.state.gameState}
         />
       </div>
     )

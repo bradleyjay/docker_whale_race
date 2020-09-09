@@ -7,7 +7,9 @@ export class InProgressLeftPanel extends Component {
   
     render() {
         return (
+          <div>
             <h1>Game in Progress</h1>
+          </div>
       );
     }
   }

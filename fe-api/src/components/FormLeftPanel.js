@@ -7,6 +7,7 @@ export class FormLeftPanel extends Component {
 
     render() {
         return (
+          <div>
             <form onSubmit={this.props.handleSubmit}>
               <label htmlFor="words">
                   Words:
@@ -48,6 +49,7 @@ export class FormLeftPanel extends Component {
               <br />
               <input type="submit" value="Start" />
             </form>
+          </div>
       );
     }
   }
