@@ -83,6 +83,7 @@ These are handled by our scripts above, but for reference:
 #### Manual Python socket.io test:
 - Start Python test script server (will replace later)
   - `python3 docker/app/python_server.py`
+  - `node server.js`
 
 
 ## Docker Troubleshooting Commands
