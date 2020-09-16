@@ -4,23 +4,23 @@ services:
     environment:
     - WORD=word1
     - RACE_START=0
-    - RACE_DURATION=150
+    - RACE_DURATION=30
     - WHALENUMBER=0
-    image: 29bbf6ad5fe3
+    image: 51f6ad163146
   whale_1:
     command: bash -c "python3 main.py"
     environment:
     - WORD=word2
     - RACE_START=0
-    - RACE_DURATION=150
+    - RACE_DURATION=30
     - WHALENUMBER=1
-    image: 29bbf6ad5fe3
+    image: 51f6ad163146
   whale_2:
     command: bash -c "python3 main.py"
     environment:
     - WORD=word3
     - RACE_START=0
-    - RACE_DURATION=150
+    - RACE_DURATION=30
     - WHALENUMBER=2
-    image: 29bbf6ad5fe3
+    image: 51f6ad163146
 version: '3'

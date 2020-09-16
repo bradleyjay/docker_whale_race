@@ -34,8 +34,8 @@
 
 3. Give execute permissions to the startup script, then run it:
 
-`chmod +x startup_script.sh `
-`./startup_script.sh `
+`chmod +x startup_script.sh`
+`./startup_script.sh`
 
 ## Setup the Frontend
 
@@ -49,7 +49,7 @@
 2. Start middleware: 
   - Create a new tab in your terminal app.
   - `cd docker_whale_race/fe-api/server`
-  - `node server.js`
+  - `cd docker_whale_race/fe-api/server`
 
 ## Finally, trigger the Docker spin-up script
 

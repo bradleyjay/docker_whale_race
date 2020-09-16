@@ -43,13 +43,16 @@ export class Main extends Component {
 
   handleSubmit = event => {
     console.log("setting start time")
+    const current_time = Date.now()/1000
     this.setState({
-      start_time: ((Date.now()) * 1000), // python conversions?
+      start_time: current_time, // python conversions?
       // start_time: ((Date.now() + 5000) / 1000), // 5 second delay!
       gameState: 1
     })
-    console.log(this.state)
-
+    console.log(`after setState:${this.state.start_time}`)
+    // looks like both postData and setState are async. the reassignment for setState needs more time before going into postData
+    // we're submitting the old state rather than the updating one on lines 47-51. likely need to rewrite handleSubmit for two async functions. 
+    // async/await on setState? 
     async function postData(url = '', data = {}) {
       console.log('SENDING')
       console.log('GameState is:')
@@ -66,16 +69,12 @@ export class Main extends Component {
       });
       return 'form sent';
     }
-
     postData('http://localhost:8080/race_settings', this.state);
-
     event.preventDefault(event);
   };
 
   render() {
-    // console.log("It's a whale of a taaaaaale")
-    // console.log(this.props.whaledata)
-    // console.log(this.state.duration)
+    console.log(`start_time: ${this.state.start_time}`)
     console.log(`gameState: ${this.state.gameState}`)
     return (
       <div className="flex-row">

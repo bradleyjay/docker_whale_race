@@ -19,12 +19,12 @@ def race_settings():
 
         # for testing only - replace when we know what frontend will send
         print("Generating docker compose")
-        inputs = request.get_json(force=True)
+        inputs = request.get_json(force = True)
         print(inputs)
 
-        array_of_words = inputs["list_of_words"]
-        start_time = int(inputs["start_time"])
-        duration = inputs["duration"]
+        array_of_words = inputs['list_of_words']
+        start_time = int(inputs['start_time'])
+        duration = inputs['duration']
 
         yaml_writer([array_of_words, start_time, duration])
 
