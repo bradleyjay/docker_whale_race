@@ -43,16 +43,8 @@ export class Main extends Component {
 
   handleSubmit = event => {
     console.log("setting start time")
-    const current_time = Date.now()/1000
-    this.setState({
-      start_time: current_time, // python conversions?
-      // start_time: ((Date.now() + 5000) / 1000), // 5 second delay!
-      gameState: 1
-    })
-    console.log(`after setState:${this.state.start_time}`)
-    // looks like both postData and setState are async. the reassignment for setState needs more time before going into postData
-    // we're submitting the old state rather than the updating one on lines 47-51. likely need to rewrite handleSubmit for two async functions. 
-    // async/await on setState? 
+    const current_time = Date.now() / 1000
+
     async function postData(url = '', data = {}) {
       console.log('SENDING')
       console.log('GameState is:')
@@ -69,13 +61,29 @@ export class Main extends Component {
       });
       return 'form sent';
     }
-    postData('http://localhost:8080/race_settings', this.state);
+
+
+
+    this.setState({
+      start_time: current_time, // python conversions?
+      // start_time: ((Date.now() + 5000) / 1000), // 5 second delay!
+      gameState: 1
+    }, () => {
+
+      postData('http://localhost:8080/race_settings', this.state);
+    })
+
+    console.log(`after setState:${this.state.start_time}`)
+    // looks like both postData and setState are async. the reassignment for setState needs more time before going into postData
+    // we're submitting the old state rather than the updating one on lines 47-51. likely need to rewrite handleSubmit for two async functions. 
+    // async/await on setState? 
+
     event.preventDefault(event);
   };
 
   render() {
     console.log(`start_time: ${this.state.start_time}`)
-    console.log(`gameState: ${this.state.gameState}`)
+    console.log(`gameState at panelRender: ${this.state.gameState}`)
     return (
       <div className="flex-row">
         <LeftPanel
@@ -85,8 +93,9 @@ export class Main extends Component {
           duration={this.state.duration}
           gameState={this.state.gameState}
         />
-        {this.state.gameState === true ?  // only show graph if game running
-          <Graph
+        {this.state.gameState == 1 | 2 ? // #FIXME
+          // {this.state.gameState === true ?  // only show graph if game running
+          < Graph
             // pass down object instead of separate count props
             count1={this.props.whaledata['0']}
             count2={this.props.whaledata['1']}
