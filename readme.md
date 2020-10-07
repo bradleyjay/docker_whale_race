@@ -49,7 +49,7 @@
 2. Start middleware: 
   - Create a new tab in your terminal app.
   - `cd docker_whale_race/fe-api/server`
-  - `cd node server.js `
+  - `node server.js `
 
 ## Finally, trigger the Docker spin-up script
 

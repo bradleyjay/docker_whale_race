@@ -12,6 +12,7 @@ class App extends Component {
       // response: { val1: 17, val2: 38 },
       // race_duration: 302,
       // race_start: 0,
+      race_completed: false,
       whaledata: { '0': 0, '1': 0, '2': 0, '3': 0, '4': 0 },
       endpoint: "http://127.0.0.1:4001"
     };
@@ -31,15 +32,17 @@ class App extends Component {
       //unpack yo stuff
       const index_key = data["whalenumber"]
       const count = data["cum_instances_found"]
+      const race_completed = data["race_completed"]
 
       // update state, reassign state
-
-      this.setState({
-        whaledata: {
-          ...this.state.whaledata,
-          [index_key]: count
-        }
-      });
+      !this.state.race_completed ?   // conditional prevents us from counting data AFTER race ends
+        this.setState({
+          whaledata: {
+            ...this.state.whaledata,
+            [index_key]: count
+          },
+          race_completed: race_completed
+        }) : this.setState({});  // this is a dumb placeholder. Need a function here.
     });
     console.log("End DidMount.")
   }
@@ -64,6 +67,7 @@ class App extends Component {
       <div className="App">
         <Main
           whaledata={this.state.whaledata}
+          race_completed={this.state.race_completed}
         />
       </div>
     )

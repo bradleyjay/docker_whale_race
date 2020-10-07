@@ -55,7 +55,7 @@ class Graph extends React.Component {
     }
     ];
     return (
-      <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+      <div id="chartdiv" style={{ width: "100%", height: "500px", visibility: this.props.graph_visibility }}></div>
     );
   }
 }

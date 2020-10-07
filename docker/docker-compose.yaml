@@ -2,25 +2,25 @@ services:
   whale_0:
     command: bash -c "python3 main.py"
     environment:
-    - WORD=word1
-    - RACE_START=1601425770
-    - RACE_DURATION=30
+    - WORD=pants
+    - RACE_START=1602031882
+    - RACE_DURATION=10
     - WHALENUMBER=0
-    image: c96beb10f98b
+    image: 0c54aa44a916
   whale_1:
     command: bash -c "python3 main.py"
     environment:
-    - WORD=word2
-    - RACE_START=1601425770
-    - RACE_DURATION=30
+    - WORD=or
+    - RACE_START=1602031882
+    - RACE_DURATION=10
     - WHALENUMBER=1
-    image: c96beb10f98b
+    image: 0c54aa44a916
   whale_2:
     command: bash -c "python3 main.py"
     environment:
-    - WORD=word3
-    - RACE_START=1601425770
-    - RACE_DURATION=30
+    - WORD=words
+    - RACE_START=1602031882
+    - RACE_DURATION=10
     - WHALENUMBER=2
-    image: c96beb10f98b
+    image: 0c54aa44a916
 version: '3'

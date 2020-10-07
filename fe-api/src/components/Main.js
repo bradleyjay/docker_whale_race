@@ -81,9 +81,14 @@ export class Main extends Component {
     event.preventDefault(event);
   };
 
+
+
   render() {
     console.log(`start_time: ${this.state.start_time}`)
     console.log(`gameState at panelRender: ${this.state.gameState}`)
+    // const new_game_state = (this.props.race_completed ? 2 : this.state.gameState)
+    // this.setState({ gameState: new_game_state })
+
     return (
       <div className="flex-row">
         <LeftPanel
@@ -92,18 +97,22 @@ export class Main extends Component {
           list_of_words={this.state.list_of_words}
           duration={this.state.duration}
           gameState={this.state.gameState}
+          race_completed={this.props.race_completed}
+          whaledata={this.props.whaledata}
         />
-        {this.state.gameState == 1 | 2 ? // #FIXME
-          // {this.state.gameState === true ?  // only show graph if game running
-          < Graph
-            // pass down object instead of separate count props
-            count1={this.props.whaledata['0']}
-            count2={this.props.whaledata['1']}
-            count3={this.props.whaledata['2']}
-            list_of_words={this.state.list_of_words}
-          />
-          : <h1> </h1>
-        }
+
+
+        < Graph
+          // pass down object instead of separate count props
+          count1={this.props.whaledata['0']}
+          count2={this.props.whaledata['1']}
+          count3={this.props.whaledata['2']}
+          list_of_words={this.state.list_of_words}
+          graph_visibility={this.state.gameState == 0 ? "hidden" : "visible"}
+        />
+
+
+
       </div>
     )
   }
