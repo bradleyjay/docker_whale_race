@@ -24,8 +24,6 @@ def yaml_writer(race_data):
     duration = "RACE_DURATION=" + str(race_data[2])
     array_of_words = race_data[0]
 
-    print("reached")
-
     docker_image_id = subprocess.getstatusoutput("docker images -q docker_shocker")
 
     ################

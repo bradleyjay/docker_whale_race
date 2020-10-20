@@ -1,7 +1,22 @@
+## Initialization
+
+1. Ensure you have Docker and Python installed.
+2. If not present, create a virtual environment:
+
+`python3 -m venv venv`
+
+4. Activate your virtual environment:
+
+`. venv/bin/activate`
+
+5. Install the relevant software:
+
+`pip3 install -r docker/requirements.txt`
+
 ## Start the API Flask Server
 
 0. Create a new tab in your terminal app.
-1. Give the API Flask script execute permissions:
+6. Give the API Flask script execute permissions:
 `chmod +x docker/run_api.sh`
 2. Open a new terminal tab, navigate to docker directory
   `cd docker`
@@ -12,29 +27,15 @@
 ## Docker Preparation
 
 0. Create another new tab in your terminal app.
-1. Ensure you have Docker and Python installed.
-2. Be sure you've installed PyYAML and Flask:
-
-`pip3 install pyyaml`
-`pip3 install flask`
-
-3. Start the Docker Daemon.
-4. If not present, create a virtual environment:
-
-`python3 -m venv venv`
-
-4. Activate your virtual environment:
-
-`. venv/bin/activate`
-
-4. Navigate to the Docker directory:
+1. Start the Docker Daemon.
+2. Navigate to the Docker directory:
 
 `cd docker`
 
-5. Give execute permissions to the startup script, then run it:
+3. Give execute permissions to the startup script, then run it:
 
-`chmod +x startup_script.sh `
-`./startup_script.sh `
+`chmod +x startup_script.sh`
+`./startup_script.sh`
 
 ## Setup the Frontend
 
@@ -48,7 +49,7 @@
 2. Start middleware: 
   - Create a new tab in your terminal app.
   - `cd docker_whale_race/fe-api/server`
-  - `node server.js`
+  - `node server.js `
 
 ## Finally, trigger the Docker spin-up script
 
@@ -82,6 +83,7 @@ These are handled by our scripts above, but for reference:
 #### Manual Python socket.io test:
 - Start Python test script server (will replace later)
   - `python3 docker/app/python_server.py`
+  - `node server.js`
 
 
 ## Docker Troubleshooting Commands

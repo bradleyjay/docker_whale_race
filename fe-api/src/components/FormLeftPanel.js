@@ -4,9 +4,10 @@ export class FormLeftPanel extends Component {
     constructor(props) {
       super(props);
     }
-  
+
     render() {
         return (
+          <div>
             <form onSubmit={this.props.handleSubmit}>
               <label htmlFor="words">
                   Words:
@@ -14,21 +15,21 @@ export class FormLeftPanel extends Component {
                   <input
                   name="word1"
                   type="text"
-                  value={this.props.word1}
+                  value={this.props.list_of_words[0]}
                   onChange={this.props.handleChange}
                   />
                   <br/>
                   <input
                   name="word2"
                   type="text"
-                  value={this.props.word2}
+                  value={this.props.list_of_words[1]}
                   onChange={this.props.handleChange}
                   />
                   <br/>
                   <input
                   name="word3"
                   type="text"
-                  value={this.props.word3}
+                  value={this.props.list_of_words[2]}
                   onChange={this.props.handleChange}
                   />
               </label>
@@ -39,6 +40,7 @@ export class FormLeftPanel extends Component {
                   <br/>
                   <input
                   name="duration"
+                  form_field_type="duration"
                   type="number"
                   value={this.props.duration}
                   onChange={this.props.handleChange}
@@ -47,6 +49,7 @@ export class FormLeftPanel extends Component {
               <br />
               <input type="submit" value="Start" />
             </form>
+          </div>
       );
     }
   }

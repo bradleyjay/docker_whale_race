@@ -74,7 +74,7 @@ while is_active:
     # send results to API
     # print("iterations: " + str(iterations))
     print(results)
-    is_active = time.time() < race_end_timestamp
+    is_active = time.time() < race_end_timestamp  # Probably this evaluation?
 
     results["race_completed"] = not is_active
 
