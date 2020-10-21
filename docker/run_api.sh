@@ -10,6 +10,7 @@ if [[ "$VIRTUAL_ENV" != "" ]]
 then
   # INVENV=1
   echo "enthusiastically in virtual environment"
+  pwd
   pip3 install -r docker/requirements.txt
   # Docker Preparation (section 3)
   docker build --no-cache -t docker_shocker ./docker 
