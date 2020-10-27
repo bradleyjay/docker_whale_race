@@ -12,35 +12,25 @@ else
   sleep 25 # wait 25s (maybe we can shorteen it)
 fi
 
-# # Initialization Step in readme.md (section 1)
-# python3 -m venv venv
-# source venv/bin/activate
-#
-# if [[ "$VIRTUAL_ENV" != "" ]]
-# then
-#   # INVENV=1
-#   echo "enthusiastically in virtual environment"
-#   pip3 install -r docker/requirements.txt
-#   # Docker Preparation (section 3)
-#   docker build --no-cache -t docker_shocker ./docker 
-#   # Start the API Flask Server (section 2)
-#   chmod +x docker/run_api.sh
-#   echo "changed permissions"  
-#   # Open up a new Terminal for run_api.sh
-#   open -a Terminal ./docker/run_api.sh
-#   echo "enthusiastically leavng virtual environment"
-# else
-#   # INVENV=0
-#   echo "not in virtual environment"
-# fi
+# Initialization Step in readme.md (section 1)
+python3 -m venv venv
+source venv/bin/activate
 
-# Open up a new Terminal for run_api.sh
-location=$(pwd)
-pwd
-# open -a Terminal $location ./docker/run_api.sh
-open -a Terminal "`pwd`" -e `"./docker/run_api.sh"`
-
-  # # Setup the Frontend (section 4)
-  # cd docker_whale_race/fe-api
-  # brew install node
+if [[ "$VIRTUAL_ENV" != "" ]]
+then
+  # INVENV=1
+  echo "enthusiastically in virtual environment"
+  pip3 install -r docker/requirements.txt
+  # Docker Preparation (section 3)
+  docker build --no-cache -t docker_shocker ./docker 
+  # Start the API Flask Server (section 2)
+  chmod +x docker/run_api.sh
+  echo "changed permissions"  
+  # Open up a new Terminal for run_api.sh
+  open -a Terminal ./docker/run_api.sh
+  echo "enthusiastically leavng virtual environment"
+else
+  # INVENV=0
+  echo "not in virtual environment"
+fi
 
