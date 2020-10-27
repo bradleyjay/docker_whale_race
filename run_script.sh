@@ -35,7 +35,10 @@ fi
 # fi
 
 # Open up a new Terminal for run_api.sh
-open -a Terminal ./docker/run_api.sh
+location=$(pwd)
+pwd
+# open -a Terminal $location ./docker/run_api.sh
+open -a Terminal "`pwd`" -e `"./docker/run_api.sh"`
 
   # # Setup the Frontend (section 4)
   # cd docker_whale_race/fe-api
