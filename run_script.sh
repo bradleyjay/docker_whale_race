@@ -12,6 +12,15 @@ else
   sleep 25 # wait 25s (maybe we can shorteen it)
 fi
 
+#  Setup the Frontend (Step 4)
+cd fe-api
+brew install node
+npm install
+npm start
+
+cd server
+node server.js &
+
 # Initialization Step in readme.md (section 1)
 python3 -m venv venv
 source venv/bin/activate
@@ -27,7 +36,7 @@ then
   chmod +x docker/run_api.sh
   echo "changed permissions"  
   # Open up a new Terminal for run_api.sh
-  open -a Terminal ./docker/run_api.sh
+  open -a Terminal ./docker/run_api.sh &
   echo "enthusiastically leavng virtual environment"
 else
   # INVENV=0
