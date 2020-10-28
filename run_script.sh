@@ -16,10 +16,14 @@ fi
 cd fe-api
 brew install node
 npm install
-npm start
+npm start &  #FIXME this shuts immediately.
+# nohup npm start &
 
+echo "HEY MADE IT TO SERVER"
 cd server
-node server.js &
+node server.js &  #FIXME this may not run, needs own terminal?
+# nohup node server.js &
+cd ../..
 
 # Initialization Step in readme.md (section 1)
 python3 -m venv venv
@@ -36,7 +40,9 @@ then
   chmod +x docker/run_api.sh
   echo "changed permissions"  
   # Open up a new Terminal for run_api.sh
-  open -a Terminal ./docker/run_api.sh &
+  # open -a Terminal ./docker/run_api.sh &
+  cd docker
+  ./run_api.sh   #Fixed!
   echo "enthusiastically leavng virtual environment"
 else
   # INVENV=0
