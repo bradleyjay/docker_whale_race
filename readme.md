@@ -90,3 +90,7 @@ These are handled by our scripts above, but for reference:
 - After curling, you can `docker ps` and use the following commands to troubleshoot.
   - To bash into the docker container, use `docker exec -it <container-id> bash`.
   - To view logs for container, use `docker logs -f <container-name>`.
+  
+# Docker Whale Race Trello Board
+
+- https://trello.com/b/cHbquKpN/docker-container-whale-race-failure-enthusiast-project
