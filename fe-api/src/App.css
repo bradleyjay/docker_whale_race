@@ -29,9 +29,8 @@
 }
 
 .flex-row {
-  display: flex;
-  padding: 30px;
-  align-items: center;
+  padding: 0px !important;
+  margin: 0px !important;
 }
 
 @keyframes App-logo-spin {

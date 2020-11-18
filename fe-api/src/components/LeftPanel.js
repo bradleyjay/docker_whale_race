@@ -26,7 +26,10 @@ export class LeftPanel extends Component {
     } else if (isGameState === 1) {
       return (
         <div>
-          <InProgressLeftPanel />
+          <InProgressLeftPanel
+            duration={this.props.duration}
+
+          />
         </div>
       )
     } else {
