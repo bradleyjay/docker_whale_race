@@ -28,3 +28,5 @@ __pycache__*
 /fe-api/npm-debug.log*
 /fe-api/yarn-debug.log*
 /fe-api/yarn-error.log*
+
+.idea/
