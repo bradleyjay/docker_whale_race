@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Graph from './Graph'
 import LeftPanel from './LeftPanel'
 // import $ from 'jquery'
+import rumble_gif from '../rumble.gif';
 
 export class Main extends Component {
   constructor(props) {
@@ -91,25 +92,32 @@ export class Main extends Component {
 
     return (
       <div className="flex-row">
-        <LeftPanel
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          list_of_words={this.state.list_of_words}
-          duration={this.state.duration}
-          gameState={this.state.gameState}
-          race_completed={this.props.race_completed}
-          whaledata={this.props.whaledata}
-        />
+        <div style={{height:"100vh", width:"25%", position:"absolute", left:"0px", top:"0px", backgroundColor:"#389cea", color:"white"}}>
+            <LeftPanel
+              style={{width:"50%"}}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              list_of_words={this.state.list_of_words}
+              duration={this.state.duration}
+              gameState={this.state.gameState}
+              race_completed={this.props.race_completed}
+              whaledata={this.props.whaledata}
+            />
+        </div>
 
+        <div style={{width:"75%", height:"100vh", padding:"0 0 0 25%"}}>
+            {this.state.gameState == 0 ? <img src={rumble_gif} style={{width:"100%"}}/> : null}
 
-        < Graph
-          // pass down object instead of separate count props
-          count1={this.props.whaledata['0']}
-          count2={this.props.whaledata['1']}
-          count3={this.props.whaledata['2']}
-          list_of_words={this.state.list_of_words}
-          graph_visibility={this.state.gameState == 0 ? "hidden" : "visible"}
-        />
+            < Graph
+               // pass down object instead of separate count props
+               count1={this.props.whaledata['0']}
+               count2={this.props.whaledata['1']}
+               count3={this.props.whaledata['2']}
+               list_of_words={this.state.list_of_words}
+               graph_visibility={this.state.gameState == 0 ? "hidden" : "visible"}
+               chart_height={this.state.gameState == 0 ? "0px" : "500px"}
+             />
+        </div>
 
 
 

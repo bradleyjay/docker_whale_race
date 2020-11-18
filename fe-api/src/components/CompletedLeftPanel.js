@@ -1,5 +1,6 @@
 import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
 import React, { Component } from 'react';
+import victory_image from '../victory_image.png';
 
 
 export class CompletedLeftPanel extends Component {
@@ -16,6 +17,7 @@ export class CompletedLeftPanel extends Component {
     console.log(`Winner Index: ${winner_name}`)
     return (
       <div>
+        <img src={victory_image} style={{width:"100%"}}/>
         <h1>
 
           A Whale Won!!!
@@ -23,6 +25,7 @@ export class CompletedLeftPanel extends Component {
 
 
         </h1>
+        <button><a href="/"> play again </a></button>
       </div>
     );
   }
